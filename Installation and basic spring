@@ -1,0 +1,100 @@
+Spring------------------
+Spring is a Java framework used to build enterprise and web applications easily by:
+Reducing boilerplate code
+Managing objects automatically
+Supporting microservices, REST APIs, security, data access, etc.
+“An enterprise application is a large, scalable, secure software system that supports critical business processes for organizations.”
+
+Why Spring is Popular?
+✔ Loose coupling(Not dependent on one cls to other class)
+✔ Easy testing
+✔ Microservices support
+✔ Industry standard
+✔ Used with AWS, Docker, Kubernetes
+
+What is Modular Architecture?
+
+Modular Architecture is a design approach where an application is divided into small, independent, well-defined modules, and each module is responsible for one specific functionality.
+
+
+Container
+“A container in Spring is a runtime environment that manages beans, their dependencies, and their lifecycle.”
+
+In Spring, a Container is a core framework component that:
+👉 Creates, manages, and destroys objects (called Beans)
+👉 Injects dependencies (IOC & DI)
+👉 Manages the entire lifecycle of beans
+
+IOS:
+IOC is a principle where the responsibility of creating and managing objects is given to the framework instead of the developer.”
+
+
+IOC = Rule
+“Students should not cook food themselves”
+Container = Kitchen
+
+IOC is a design principle, whereas the Spring Container is the framework component that implements IOC.
+“The kitchen prepares and serves food”
+
+
+
+
+
+
+IOC(Inversion of control):(inversion mean we are giving the control to someone else);
+IOC is just a prnciple/philosophy, we neean technick to do it.
+DI(Dependents the injection) comes to the picture.
+To acheive IOC we use DI depends the injection
+IOS Container is like a space(where spring wio create object and store)
+
+
+DI(dependent Injection): 
+It's a design patter
+
+Injector example(we need CPU to run Laptop(we have to inject CPU into Laptop)
+Class CPU{
+}
+
+class Laptop{
+CPU cpu;
+}
+
+
+
+Installation
+in Eclipse-->help--->marketplace--> search with spring tool and choose 
+Spring Tools (aka Spring Tool Suite) 5.x / 4.x and install
+
+
+Spring in Maven:
+1. Create maven project--> go to Mabven repo saerch with Spring context --> copy the code--> add that code into POM.xml file.
+2. Inside main we should create resource folder-->and create xml file(Spring 6 bean conf xml search and add the code into xml)
+
+
+SpringBoot
+Creation of App;
+Create project-->search spring(select Spring starter prjct)--> give name-->Artifact id name-->next-->finish
+
+Objects is called beans
+
+'@Autowired' in Spring is like telling the framework to automatically find and insert the right tools or parts your class needs, so you don't have to do it manually.
+
+
+We have 2ways to work with spring
+1. Xml based
+2. javaConfiguration based
+
+instead of writing all xml or annotation, we can just communicate with spring using @componentScan(Complete name of the clss")
+
+
+
+
+
+
+
+
+Spring:
+What is Singleton?
+Singleton means only ONE object (instance) of a bean is created in the Spring container, and the same object is shared everywhere.
+👉 This is the DEFAULT scope in Spring.
+<bean id="prgrm" class="com.SpringMaven.Spring1.Maven.Prgrm" scope="singleton"></bean>
