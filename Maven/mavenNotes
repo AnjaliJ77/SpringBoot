@@ -1,0 +1,68 @@
+
+
+
+Maven:
+Apache Maven is a build automation and dependency management tool used in Java projects to manage project dependencies, build lifecycle, and project structure.
+
+Project management tool. helps developer with:
+Build generation
+Deoendency resolution
+Documentation etc.
+
+Maven uses POM(prjct object model) to achieve this.
+When maven command is given, it looks for "pom.xml in the current directory & get needed configuration.
+
+
+
+
+Mvn life cycle:
+If we want to run the "Package phase all it's prebious phase will get execute first.
+Each phases has goals(multiple goals/task)
+If we want to run a particular task (for ex. package), then all goals of previous pahsases + current phase goals/task will get run first.
+
+1. validate – checks project structure
+Maven already has validate phase defined and it's goal, but if we =want to add more goals/task, then we can use <build> element to add the goal to specific phase.
+Command: mvn validate
+
+.
+2. compile – compiles source code
+Conbvert from java code to byte code and put it under target file.
+mvn compile
+
+
+3. test – runs unit tests
+It validate , compile and test in our prjct(unit TCs)
+mvn test
+
+4. package – creates JAR/WAR
+It completees the task till test phase and then run package phase in which it generates .jar/.war file.
+ot build jar into target file.
+mvn package
+
+
+5. verify – verifies the quality
+verify runs checks to ensure the project is valid and meets quality standards before installation or deployment.
+we can perform some additional 
+Integration tests
+SonarQube analysis
+Code coverage checks (JaCoCo)
+Quality gates
+====mvn verify
+
+6. install – installs package into local repo
+It install .jar package into the local repo, them dot m2 folder will get created
+if we want to chaneg anything , we can change it in setting.xml
+--- mvn install
+
+7. deploy – deploys to remote repo
+Deploy the .jar to remote repo
+inside distribution managemnet we should ptrovide the repo url(inside pom).
+Inside setting we have to give user id and pwd
+-----mvn deploy
+
+
+
+
+
+Note:    Remote repo======Maven central(public)   Out side of the sysytem.
+Local repo====My system
