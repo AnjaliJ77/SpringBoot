@@ -1,6 +1,13 @@
 @ConditionalOnProperty Annotations:
 Beans is created conditionally(Mean bean can be created or not).
 
+
+3imp steps:
+1. In the sub classes we should mention @ConditionalOnProperty
+2. In the conf class mention required as false
+3. Mention the proper values into the Application.property
+
+
 @ConditionalOnProperty is used to enable or disable a bean/configuration based on a value in the application.properties / application.yml file.
 👉 Very useful when:
 You want feature on/off
