@@ -1,0 +1,360 @@
+Spring------------------
+Spring is a Java framework used to build enterprise and web applications easily by:
+Reducing boilerplate code
+Managing objects automatically
+Supporting microservices, REST APIs, security, data access, etc.
+“An enterprise application is a large, scalable, secure software system that supports critical business processes for organizations.”
+
+Why Spring is Popular?
+✔ Loose coupling(Not dependent on one cls to other class)
+✔ Easy testing
+✔ Microservices support
+✔ Industry standard
+✔ Used with AWS, Docker, Kubernetes
+
+What is Modular Architecture?
+
+Modular Architecture is a design approach where an application is divided into small, independent, well-defined modules, and each module is responsible for one specific functionality.
+
+
+Container
+“A container in Spring is a runtime environment that manages beans, their dependencies, and their lifecycle.”
+
+In Spring, a Container is a core framework component that:
+👉 Creates, manages, and destroys objects (called Beans)
+👉 Injects dependencies (IOC & DI)
+👉 Manages the entire lifecycle of beans
+
+IOS:
+IOC is a principle where the responsibility of creating and managing objects is given to the framework instead of the developer.”
+
+
+IOC = Rule
+“Students should not cook food themselves”
+Container = Kitchen
+
+IOC is a design principle, whereas the Spring Container is the framework component that implements IOC.
+“The kitchen prepares and serves food”
+
+
+
+
+
+
+IOC(Inversion of control):(inversion mean we are giving the control to someone else);
+IOC is just a prnciple/philosophy, we neean technick to do it.
+DI(Dependents the injection) comes to the picture.
+To acheive IOC we use DI depends the injection
+IOS Container is like a space(where spring wio create object and store)
+
+
+DI(dependent Injection): 
+It's a design patter
+
+Injector example(we need CPU to run Laptop(we have to inject CPU into Laptop)
+Class CPU{
+}
+
+class Laptop{
+CPU cpu;
+}
+
+
+
+Installation
+in Eclipse-->help--->marketplace--> search with spring tool and choose 
+Spring Tools (aka Spring Tool Suite) 5.x / 4.x and install
+
+
+Spring in Maven:
+1. Create maven project--> go to Mabven repo saerch with Spring context --> copy the code--> add that code into POM.xml file.
+2. Inside main we should create resource folder-->and create xml file(Spring 6 bean conf xml search and add the code into xml)
+
+
+SpringBoot
+Creation of App;
+Create project-->search spring(select Spring starter prjct)--> give name-->Artifact id name-->next-->finish
+
+Objects is called beans
+
+'@Autowired' in Spring is like telling the framework to automatically find and insert the right tools or parts your class needs, so you don't have to do it manually.
+
+
+We have 2ways to work with spring
+1. Xml based
+2. javaConfiguration based
+
+instead of writing all xml or annotation, we can just communicate with spring using @componentScan(Complete name of the clss")
+
+
+
+
+
+
+
+
+Spring:
+What is Singleton?
+Singleton means only ONE object (instance) of a bean is created in the Spring container, and the same object is shared everywhere.
+👉 This is the DEFAULT scope in Spring.
+<bean id="prgrm" class="com.SpringMaven.Spring1.Maven.Prgrm" scope="singleton"></bean>
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MVC:
+MVC (Model–View–Controller) is a design pattern used to separate an application into three layers: Model, View, and Controller.
+1️⃣ Model
+Holds data + business logic
+Interacts with database
+Example: Entity, Service, Repository
+class User {
+  int id;
+  String name;
+}
+
+2️⃣ View
+Displays data to the user
+No business logic
+Examples:
+JSP
+Thymeleaf
+HTML
+
+3️⃣ Controller
+Handles client requests
+Connects Model and View
+Returns response
+@Controller
+public class UserController {
+}
+
+
+What is an API?
+👉 API (Application Programming Interface) is a set of rules that allows two software applications to communicate with each other.
+
+
+
+Bean:
+Bean is a java object, which is managed by Spring container(IOS container).
+IOS container: containes all the beans which get created and also manage them
+
+How to create beans
+1. Component Annotation:
+@Component annotation follows "convention over configiuration" approach.
+SpringBoot will try to auto configure based on conventions reducing the need for explicit configuration.
+@Conreoller, @service etc. all are internally tell sprong to create bean and manage it.
+--- SB doesn't know what to pass in the Constructor parameters., so bean comes into the picture
+
+2. Bean Annotations.
+we provide the conf details and te;;s SB to use it while creating a bean.
+
+
+How SB find these beans?
+using @ComponentScan annotation or @configuration, it will scan the specidied opackage and sub packages for classes annotated with @Component, @service etc.
+
+at what time Beans get  reated:
+1. eager initiation:
+beans get created, when we start up an application
+ex : single on scope
+
+2. lazy:
+some beans get created lazily, means when they actually needed.
+ex: lazily initialized.
+
+
+Bean Scopes: ______________
+1. Singleton(Default scope):
+*Onlt one instance created per IOC
+Eagerly initialixed by IOC
+no need to mention anything since it's a default scope of bean.
+
+2. Prototype:
+each time new objecr will get created
+Lazily initiated, means when obj is created only wehn it's required
+
+@Scope("prototype")
+class ***{
+}
+
+3. Request:
+New obj is created for each HTTP request.
+Lazily initiated
+
+
+
+4. Session;
+New object is created for each HTTP session
+lazy
+when user accessews any endpointas, session is created
+Reamins active, till it doesn't expires
+'
+
+
+
+@ConditionalOnProperty:
+Bean us created Conditionalli(means bean can be created or not))
+
+
+
+
+
+
+
+Lifecycle of bean:
+Spring Bean lifecycle describes the steps a bean goes through from creation to destruction inside the Spring container.
+
+1️⃣ Bean Instantiation
+Spring creates the bean object
+Uses constructor or factory method
+
+2️⃣ Populate Properties (Dependency Injection)
+Spring injects dependencies
+Using setter injection / constructor injection / field injection
+
+3️⃣ Constuct bean/ BeanNameAware (optional)
+If bean implements BeanNameAware
+Spring passes the bean name
+
+4️⃣ BeanFactoryAware / ApplicationContextAware (optional)
+Gives access to container objects
+
+5️⃣ BeanPostProcessor (before init)
+postProcessBeforeInitialization() is called
+
+6️⃣ Initialization
+Bean initialization happens in any one / more ways:
+@PostConstruct
+InitializingBean.afterPropertiesSet()
+Custom init-method
+
+7️⃣ BeanPostProcessor (after init)
+postProcessAfterInitialization() is called
+
+8️⃣ Bean Ready to Use 🎉
+Bean is now fully initialized and used by application
+
+9️⃣ Destruction (on container shutdown)
+Destruction happens using:
+@PreDestroy
+DisposableBean.destroy()
+Custom destroy-method
+
+
+
+SpringBoot Annotations:
+1. @Controller: It indicates that the class is responsible for handling incoming HTTP requsets.
+OR
+@RestController:(prefered)
+Controller + ResponseBody
+
+
+
+Dependancy Injection:
+*Using DI, we can make our calss indeoendent of it's dependencies from external source.
+It helps to remove the depenedency on concrete implementaion and inject the dependency from external source.
+
+
+@Autowired, first look for a bean of the required type
+--> if bean found, Spring will inject it
+
+Types of injections:
+1. Field injection
+DEpen. is set into the fields of the class directly.
+Spring uses reflection, it iteartrs over the fields and resolve the dependency.
+It's very simple and easy to use.
+Cannot be used with immutable fileds.
+ex: public final class_name obj;
+
+2. Setter injections:
+Dep. is set into the fields using the setter method.
+we havefrom external source. to annotate the method using @autowired
+Dep. can be changed anytime after the object creation(as obj can not be markedas final).
+eese of testing, as we can pass mock obj in the Depe. easily.
+
+Disadvantage: field cannot be marked as final (not make it as immutable)
+
+Class User{
+public Order order;
+
+public User()
+{
+sysout("     ")}
+@autowired
+public void setOrderDepe(Order order){
+this.order=order;
+}
+
+
+3. Constructor injection:(***prefered):
+it recommended to use
+Dependency get resolved t the time of initialization of the obj itself.
+We can have multiple constructor for diff classses(Class with constructor).
+in main class we should write code like below
+
+Why it's recommended:
+*All mandatory dep are created at the time of initialization itself. makes 100% sure that our obj is fully initialized with mandatory depe.
+Immutable objecat can be created using constructor injection:
+public final Order order;
+@Autowired
+	public void User(Order order) {
+		this.order=order;
+		System.out.println("User initialized with Order");
+	}
+
+
+
+-------------------------------------------------------------------------
+public class User {
+	@Autowired        //Field injection
+	private Order order;
+	public User() {
+		System.out.println("Constructor from User class");
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	//Setter injection type
+//	@Autowired
+//	void setterDepInjec(Order order) {
+//		this.order=order;
+//	}
+	
+	// Constructor injection---
+	@Autowired
+	public void User(Order order) {
+		this.order=order;
+		System.out.println("User initialized with Order");
+	}
+	
+
+}
+
+*******************************************************************************
+
+
+
+
