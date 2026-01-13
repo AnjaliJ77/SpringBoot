@@ -1,0 +1,21 @@
+@ConditionalOnProperty Annotations:
+Beans is created conditionally(Mean bean can be created or not).
+
+@ConditionalOnProperty is used to enable or disable a bean/configuration based on a value in the application.properties / application.yml file.
+👉 Very useful when:
+You want feature on/off
+Different behavior for dev / test / prod
+Avoid loading unnecessary beans
+
+Advantage:
+Toggling of feature(In Application.property we can add if we want to create bean for the particular class)
+Avoid cluttering App context with un-necessary beans
+Save memory
+Reduce app Startup time
+
+Disadvantages:
+Misconfiguration can happen
+Code complexity when over used.
+Multiple bean creation with same config, brings confusion.
+Complexity in managing
+
