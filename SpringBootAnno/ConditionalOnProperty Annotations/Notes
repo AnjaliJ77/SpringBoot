@@ -1,3 +1,11 @@
+IYou have 2 application and 1 common code base, how will u make sure that, Bean is created for 1 Application. not for other?
+
+Ans:-
+@ConditionalOnProperty
+and
+@Profile Annotation:
+
+
 @ConditionalOnProperty Annotations:
 Beans is created conditionally(Mean bean can be created or not).
 
