@@ -1,0 +1,50 @@
+Layers of Spring:
+Client request something to server-->Server has below 3 annotations
+1: Controller:
+2: Service
+3: Repository
+
+
+Client (Browser / Mobile / Postman)
+        ↓
+Controller Layer
+        ↓
+Service Layer
+        ↓
+Repository / DAO Layer
+        ↓
+Database
+
+1. Controller Layer (Presentation Layer)
+Purpose:    Handles HTTP requests
+Accepts input & returns response
+No business logic
+Annotations
+@RestController
+@Controller
+@RequestMapping
+@GetMapping, @PostMapping
+
+
+2. Service/BusinessLayer: (this is the place where we can write a steps for data base)
+we can perform CRUD operations here
+Purpose:
+Contains business logic
+Key points:
+Applies rules & validations
+Calls DAO/Repository layer
+Transaction management
+Annotations used:
+@Service
+
+3. Repository Layer (DAO / Persistence Layer)
+Purpose:
+Handles database operations
+
+Key points:
+CRUD operations
+No business logic
+Communicates with DB
+Annotations used:
+@Repository
+JpaRepository, CrudRepository
