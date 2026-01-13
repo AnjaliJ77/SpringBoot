@@ -1,0 +1,19 @@
+IYou have 2 application and 1 common code base, how will u make sure that, Bean is created for 1 Application. not for other?
+
+Ans:-
+@ConditionalOnProperty
+and
+@Profile Annotation:
+
+
+
+
+@Profile Annotation:
+Yes using bothe we can achieve this requirement.
+But @profile is technically intended for environment separation rather than application specific bean creation.
+
+
+How to handle different environment configurations?
+(dev use different conf like user name, pwd, port number, connectyion timeout, like wise QA use diff one and In Live we use different one).
+--------> We keep the configurations in "Application.properties" file
+Using @Profile annotation, we can tell to SB, to create bean only when particular profile is set
