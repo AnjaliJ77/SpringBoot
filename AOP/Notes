@@ -1,0 +1,72 @@
+AOP-Aspect Oriented Programming
+AOP is a programming approach used to separate cross-cutting concerns from business logic.
+Oops as Classes likewise AOP as aspects
+AOP allo us to focus on Business logic by handling boilerplate and repatative code like logging, Transaction managemnet etc.
+Helps in achieving reusabality, maintainability of the code.
+
+
+These are functionalities that are needed across many modules, like:
+Logging
+Security
+Transaction management
+Exception handling
+Performance monitoring
+❌ Without AOP → repeated code everywhere
+✅ With AOP → centralized & clean code
+
+
+we need to add dependency inside our POM>XML
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+----------------------------------------
+Problem WITHOUT AOP ❌
+public void transferMoney() {
+    log.info("method started");
+    // business logic
+    log.info("method ended");
+}
+
+
+
+1. Aspect
+
+👉 A class that contains cross-cutting logic
+@Aspect
+@Component
+public class LoggingAspect { }
+
+2. Advice
+👉 When the code should run
+Types:
+@Before
+@After
+@AfterReturning
+@AfterThrowing
+@Around
+
+3. Join Point
+👉 Where advice executes
+(Method execution, exception, return)
+
+4. Pointcut
+👉 Which methods should be intercepted
+execution(* SB.AOP.Empdata.*(..))
+
+5. Target Object
+👉 The actual business class (Empdata)
+
+6. Proxy
+👉 A wrapper object created by Spring
+(all AOP happens via proxy)
+
+⚠️ No proxy = no AOP
+
+4️⃣ How AOP works internally (MUST KNOW)
+Spring starts
+Scans beans
+Finds @Aspect
+Creates proxy object
+Calls proxy instead of real object
+Advice runs → then method executes
