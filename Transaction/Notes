@@ -1,0 +1,101 @@
+Transactions
+A transaction is a group of database operations that must behave as ONE unit.
+Acid property
+
+1. A(Atomicity): All operations must be completed sucessfully, if any operation fails then the entire transaction will get rollback.
+
+
+2. C(Consistency): After running transacation whether it's success or failure. my db state should be in consistancy.(Means 1 task completed another not completed----> not acceptable)
+
+3. I(Isolation); Multiple transaction are running in parralel but they feel like they are running independently
+
+4. D(Durability: Once the trans done it's operation and commit it, if something crashes or failure we dont lost the data in the system
+
+Workflow:
+Begin_Transaction:
+   - Debit from A
+  - Credit to B
+if all success:----> COMMIT;
+else------> ROLLBACK;
+END_TRANSACTION;
+
+
+
+
+In SB we use @Transaction
+
+We have to add dependency in the POM
+DB driver dependency is also required
+We can add Annotation in Class level and Method level
+Class:  Method applies to all mentioned methods of the class(Not to private method)
+Method: It applies only for respected Method
+Tran uses AOP
+
+Transaction ensures:
+All DB operations succeed → COMMIT
+Any failure → ROLLBACK
+
+1. Uses point cut expression to search for method which has @Transactional annotation
+@within(package-.Transacational)
+2. Once point cut expression matches, run an "Around" type advice.
+Advice is: InvokeWithinTransaction method present in TransacationalInterceptor class.
+
+----------Transaction manager
+Heirarchy
+TransactionManager(I)
+platform Tran(I)--It has 3methods(get transacation, commit and rollback
+AbstractPlatformTransactionManager(C)----> It provide default implementation for thses 3 methods(  Get transacation, commit and rollback)
+
+
+
+Isolation level-----------------------------
+It tells, how the changes made by one transaction are visible to other transactions 
+
+In Spring Boot, transaction isolation levels define how concurrent transactions interact with each other. You configure them using the @Transactional annotation.
+
+
+
+Quick Summary:
+Isolation levels in Spring Boot define how concurrent transactions interact with each other. They prevent anomalies like dirty reads, non-repeatable reads, and phantom reads. You configure them using the @Transactional annotation. The main levels are DEFAULT, READ_UNCOMMITTED, READ_COMMITTED, REPEATABLE_READ, and SERIALIZABLE.
+
+
+1. What is Isolation?
+- Isolation is one of the four ACID properties (Atomicity, Consistency, Isolation, Durability).
+- It ensures that concurrent transactions do not interfere with each other in a way that causes inconsistent data.
+- In Spring Boot, isolation is controlled via @Transactional(isolation = Isolation.LEVEL).
+
+2. Common Data Anomalies
+- Dirty Read: Reading uncommitted changes from another transaction.
+- Non-Repeatable Read: Same query returns different results within one transaction because another transaction updated the data.
+- Phantom Read: New rows appear in a query result set during the same transaction because another transaction inserted them.
+
+3. Isolation Levels in Spring Boot
+
+
+
+4. How to Configure in Spring Boot
+@Transactional(isolation = Isolation.REPEATABLE_READ)
+public void transferFunds(Long fromAccountId, Long toAccountId, BigDecimal amount) {
+    // business logic here
+}
+
+
+- Annotation-based: Use @Transactional on methods or classes.
+- Programmatic: Configure via TransactionTemplate or PlatformTransactionManager.
+
+5. Real-World Examples
+- Banking (Transfers/Withdrawals) → Use REPEATABLE_READ to ensure balances don’t change mid-transaction.
+- Loan Approvals → Use SERIALIZABLE to prevent phantom reads when checking multiple eligibility records.
+- E-commerce (Inventory Check) → Use READ_COMMITTED for performance, unless strict consistency is required.
+- Reporting Queries → Often safe with READ_UNCOMMITTED if slight inconsistencies are acceptable.
+
+6. Risks & Trade-offs
+- Performance impact: Higher isolation (like SERIALIZABLE) reduces concurrency and throughput.
+- Database dependency: Defaults vary (e.g., PostgreSQL → READ_COMMITTED, MySQL → REPEATABLE_READ).
+- Business rules: Choose isolation based on criticality of consistency vs. need for speed.
+
+✅ Key Takeaways
+- Always start with READ_COMMITTED (safe and efficient).
+- Use REPEATABLE_READ or SERIALIZABLE only for critical financial or consistency-sensitive operations.
+- Understand your database default isolation level before overriding it.
+- Balance consistency vs. performance depending on the business scenario.
