@@ -1,0 +1,108 @@
+
+
+
+Threads in Java:
+- A thread pool is a group of worker threads that are kept alive and reused.
+- When a task is submitted:
+- If a thread is free, it executes the task immediately.
+- If all threads are busy, the task waits in a queue until a thread becomes available.
+- After finishing, the thread returns to the pool instead of dying.
+
+
+Thread Pool:
+It's a collection of Threads, which are available to perform the submitted rasks.
+Once task is completed, worker thread get back to thread pool and wait for new taks to assigned.
+Thread can be re-used.
+
+------------Async Annotations:
+*Used to mark method that should run  asynchronously
+Runs in a new Thread, without blocking the main thread.
+@EnableAsync-----> main Spring Bott annotation class
+When we mention that annotation, create async beans automatically
+@Async----> The class
+
+*** During Application startup, SB sees that no THreadPoolTaskExecutor bean present, so it creates it's default ThreadpooltaskExecutor with below configurations.
+Default corePoolSize: 8
+
+It's not recomment at all:
+*Underutilization of Thread: Max pool and Queve pol ss more
+High latency
+Thread exhaustion
+High memory usage
+
+
+package SB.AOP;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/Threadapi")
+public class ThreadController {
+	
+	@Autowired
+	ThreadComponent comp;
+	
+	
+	
+	@GetMapping(path = "/gettt")
+	 String getMeth() {
+		System.out.println("Controller class Threads: "+ Thread.currentThread().getName());
+		comp.tMeth();
+		return "Thread";
+		
+	}
+
+}
+
+
+
+
+
+package SB.AOP;
+
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+
+@Component
+@Async
+public class ThreadComponent {
+	
+	 void tMeth() {
+		System.out.println("ComponentClass Thread: "+ Thread.currentThread().getName());
+	}
+
+}
+
+
+
+
+
+
+
+package SB.AOP;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.scheduling.annotation.EnableAsync;
+
+@SpringBootApplication(exclude = {
+        org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.class})
+@EnableAsync
+public class ThreadApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		ConfigurableApplicationContext context = SpringApplication.run(ThreadApp.class, args);
+		context.getBean(ThreadComponent.class);
+
+	}
+
+}
+
