@@ -17,6 +17,13 @@ What is Modular Architecture?
 Modular Architecture is a design approach where an application is divided into small, independent, well-defined modules, and each module is responsible for one specific functionality.
 
 
+------> Whatever we write inside the main it's called Business logic
+
+
+
+
+
+
 Container
 “A container in Spring is a runtime environment that manages beans, their dependencies, and their lifecycle.”
 
@@ -62,6 +69,8 @@ CPU cpu;
 
 
 Installation
+2ways are available:> 
+1. spring initializer--> select maven and version add the name and all--> add spring web dependency and export it---> Extract the file----> go to eclipse file--> import--> select the pthe
 in Eclipse-->help--->marketplace--> search with spring tool and choose 
 Spring Tools (aka Spring Tool Suite) 5.x / 4.x and install
 
