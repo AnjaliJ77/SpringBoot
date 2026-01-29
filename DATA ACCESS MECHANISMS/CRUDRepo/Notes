@@ -1,0 +1,21 @@
+Crud Repo
+Repo will be a interface and extends with CrudRepository<EntityClassname,datatype(int)>
+By deafult it has save findby, delete methods, no need to create it 
+
+
+Most imp steps to include
+1. add validation Annotation to the entity field.
+@Size(Min=2, Max=3)
+@NotBlank(message="username is required")----> when user not ggiving name and try to submit that time it wont allow and show the msg.
+
+2. Implement @valid and Binding result(I) to the method wgich is handling request.(For validating the errors and binding result store the error)
+
+3. Bind the Entity object and field in the HTML page
+<form action="@{/register}"  th:object="${user}" method="post">
+
+<input type="text" th:field="*{uname}" placeholder="Enter ur name"><br>
+<input type="text" th:field="*{email}" placeholder="Enter ur email"><br>
+<input type="password" th:field="*{pwd}" placeholder="enter the pwd"><br>
+
+4. Add error HTML tag with Thymleaf condition
+<p th:if="${#fields.hasErrors('uname')}" th:errors=*{uname}></p>
