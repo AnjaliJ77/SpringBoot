@@ -1,4 +1,4 @@
-package Todo.example.todoEx.Todo;
+package Todo.example.todoEx.Todo;    //it's a core hibernate
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,3 +48,4 @@ public class TodoEntity {
 	
 
 }
+
