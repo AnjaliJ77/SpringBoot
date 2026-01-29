@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<form th:action="@{/register}"  th:object="${user}" method="post">
+
+<input type="text" th:field="*{uname}" placeholder="Enter ur name"><br>
+<p th:if="${#fields.hasErrors('uname')}" th:errors=*{uname}></p>
+<input type="text" th:field="*{email}" placeholder="Enter ur email"><br>
+<input type="password" th:field="*{pwd}" placeholder="enter the pwd"><br>
+<p th:if="${#fields.hasErrors('pwd')}" th:errors=*{pwd}></p>
+
+
+<button type="submit">Submit</button>
+
+</form>
+
+
+
+</body>
+
+
+
+</html>
