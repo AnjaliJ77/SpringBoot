@@ -1,0 +1,79 @@
+API's-----> Application programming interface.
+It's a way to talk one s/w to another s/w.
+It helps different app and system talk to each other and sharing data.
+
+Client----> Customer(order some food) The one who make the request(Like a browser or an app)
+
+API---> Waiter(Who talks with client and kitchen and who carry the data) The middle man that passes the request to the server and brings back the response.
+
+Server---> Kitchen(where order gets prepared)---where all the processing happens(In the backend).
+
+
+Type of API's
+1. Haeware API's
+Uploading a pht on Insta
+camera uses Harware API to access ur camera
+2. Software API's
+Filter uses Software api to apply filter make our img appear better
+3. Web api:   
+ To upload the pht from ur phn to instagram's server.
+
+Who Builts these API:
+Dev create and use the API's
+Dev follow below rukes while building web API's
+REST
+GRAPHQL
+WEBSOCKETS
+WEBHOOKS
+SOAP
+
+
+Which is most popolar:
+Rest is stateless can save response(caching) and works with many data formats.
+
+REST API:
+It is a Tool, helps to create test and use API's easily
+*
+Collection: Is a folder-- whaere we store files
+
+API request methods
+GET--->READ
+POST---> CREATE
+PUT--->UPDATE
+PATCH--->UPDATE
+DELETE--->DELETE
+
+API end point:
+https://postman-echo.com/get
+https://---->Protocol
+postman-echo.com---> Host
+get--->path
+
+Status codes:
+1. 1XX(100- 199)--->Informative(rearly usred)
+2. 2XX(200- 299)---> Syccess
+     201--->Created
+     200---> Success
+      204---> No content
+3. 3XX(300- 399---> Redirection
+      301---> Serource been moved permanently to another url
+       302----> temporarly moved to diff url.
+4. 4XX(400-499)----> client side error ex. tipo error
+       401---> uncess
+        403---?> forbidden
+5. 5XX (500-599)---> Server side error
+         502---> bad gateway
+
+
+
+To add variable(No need to give complete url if we create a variable, just give path)
+select the URL untill .com don't include path
+Right click
+select add variable
+Give name and save
+
+
+
+
+Query parameter:
+Starts with ?
