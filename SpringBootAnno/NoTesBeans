@@ -1,0 +1,159 @@
+Bean life cycle:
+1. Instantiation
+
+2. dependency injection
+
+3. Performing some operations
+
+4. Destruction
+
+
+Methods of bean lifecycle
+1. Init(after bean is created) : 
+
+2. Destroy(Just before bean is destroyed) :  
+
+
+
+
+@Qualifier:
+If there are 2 classes implementing one class, in that case we can use @qualifier annotation
+
+
+
+-------MVC:
+How to create:
+1. We need to add View(HTTPs/frontend)
+----> create file with the extension of .jsp
+-----> JSP support both HTTML and java.
+-----> src/main/weapp/WEB-INF/view/file.jsp
+2.  We need to add the dependency for JSP file.
+----tomcat jasper mvn
+---->jstl mvn
+3. We need to inform Spring that where is our JSP file locate
+----->app.xml
+
+
+Controller: will handle the request
+
+
+
+ENUM and Optional:
+
+OPTIONAL:
+"If data is der then it retrieve and give otherwise it dont give us the rror.It displays blank/ aor we can display default msgs.
+
+What is Optional?
+
+Optional is a container object that may or may not contain a value.
+It helps avoid NullPointerException by handling null safely.
+
+
+
+
+ENUM is used to set of value which are constant.
+
+
+
+
+
+
+
+Spring JDBC
+
+
+How to add depenency:
+Create new Spring project(strter spring)-->in depedency page search with JDBC---> Select JDBC API and H2 database--> Finish.
+
+Spring JDBC is a Spring module that simplifies database access using JDBC.
+👉 It removes:
+Boilerplate code
+Manual connection handling
+
+Controller
+   ↓
+Service
+   ↓
+Repository (DAO)
+   ↓
+JdbcTemplate
+   ↓
+Database (H2 / MySQL)
+
+form 16+ payslip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Interceptor:
+It's a mediator, which get invoked before or after ur actual code.
+It allow us to modify the incoming request before our request reaching to the controller.
+Handler interceptor is a interface provided by Sppring 
+
+Implents HandlerIntercepter
+
+1. Create one Intercepter class with implements HandlerInterceptor(implement the methods)
+2. Create a confoguration class
+----> class should be implemnets with WebMvcConfiguraer
+Override addInterceptiors method
+
+
+
+
+1. Creation of Custom 
+We can create custom Annotation using keyword "@interface" java application.
+
+public @interface MycustomAnno{
+public class User{
+
+@MycustomAnno
+void updtae(){
+//b/s logic 
+}}
+
+
+
+2. important meta annotation properties are:
+
+@target: zthid mea annotation, tell where we can apply the particular annotation on method or clss or cinstructor
+
+@Target(ElementType.METHOD/CONSTRUCTOR/PARAMETER/FIELD)
+public @interface Custom{
+public class class_name{
+}}
+
+
+
+Filter: It intercept the HTTP request and response, before they reach to the servlet.
+We put filter when the Logic is same for all the server.
+
+Interceptor: It's spcific to Spring framwork, and intercept HTTP request and reposne, before they reach to the Controller and after the servlet.
+Anything we want to add logic to the particular servlet then we go for Interceptor
+
+
+HATEOAS
+The API response itself tells the client what to do next.
+So instead of the client guessing URLs, the server sends links.
+
+y we use:
+loose coupling
+API discover
