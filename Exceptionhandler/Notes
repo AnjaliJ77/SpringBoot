@@ -1,0 +1,102 @@
+Exception Handling:
+Response contains 3 parts:
+Status code: 3digit numeric value send by the server along with the response to the client.
+HTTP return code likje 200 OK, 500 Interanal_error
+Header: Additional info(Optional)
+Body: data need to be sent in response.
+
+1. 1XX(100- 199)--->Informative(rearly used)
+2. 2XX(200- 299)---> Syccess
+     201--->Created(POST)
+     200---> Success(GET AND POST)
+    202---> ACCEPETED
+      204---> No content
+3. 3XX(300- 399---> Redirection
+      301---> Serource been moved permanently to another url
+       302----> temporarly moved to diff url.
+4. 4XX(400-499)----> client side error ex. tipo error
+       400--->Bad request
+       401---> unauthorized
+        403---> forbidden---> when we try to do something when only admin has an access.
+        404---> not found
+       405----> Method not allowed
+        422----> Un-processableentity(bs validation)
+        429--->Too many requests
+5. 5XX (500-599)---> Server side error
+       500--->Internal server error(heneric error)
+     501---> Not implemented(it's still developing)
+        502---> bad gateway
+
+200 OK: request got successfull
+
+In SB we can use ResponseEntity<T> to create Response and in this T re represents the type of the Body.
+
+Exception Handling:
+Exception handling in Spring Boot is a mechanism to handle runtime errors gracefully and return meaningful HTTP responses instead of server crash messages (500 stack traces).
+
+“We prefer RuntimeException because it avoids unnecessary boilerplate, supports clean layered architecture, and works well with global exception handling.”
+
+1. Custom exception handling
+Custom exception handling means:
+Creating your own exception classes
+Throwing them when business rules fail
+Handling them centrally using Global Exception Handler
+Returning meaningful, controlled error responses
+👉 Instead of ugly runtime errors, your API behaves professionally.
+
+
+2. Error response model
+An Error Response Model is a POJO that defines how errors are sent to the client in a structured JSON format instead of plain text.
+
+3. Global exception handling(RestControllerAdvice, @Exceptionhandler)
+In Spring Boot, global exception handling means handling exceptions at one central place instead of writing try–catch blocks in every controller.
+
+4. validation exception handling
+Validation exception handling in Spring Boot captures MethodArgumentNotValidException and ConstraintViolationException to return structured error responses when request data violates validation rules.
+
+
+
+Creating derived query
+1. //First way to create derived query...using field
+	List<Product> findByName(String name);
+	List<Product> findByPrice(int price);
+2. 	// Combining fields
+	// List<Product> findByNameAndPrice(String name, int price);	
+3. 	// Using operator
+//	List<Product> findByNameContaining(String name);
+//	List<Product> findByPriceGreaterthan(int price);
+
+
+
+
+
+Classes involded in Hnadling Exception:
+
+1. ExceptionHandlerExceptionResolver handles below annotation....
+@RestControllerAdvice
+@ExceptionHandler
+
+
+2. ResponseStatusExceptionResolver
+handles Uncaught exception annotated with @ResponseStatus annotation.
+
+
+
+3. Default
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
