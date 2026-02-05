@@ -1,1 +1,4 @@
+Microservices:
+DTO: Risk free
+A DTO is a simple Java class used to transfer data between layers (Controller ↔ Service ↔ Client) without exposing your entity directly.
 
