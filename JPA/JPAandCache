@@ -1,0 +1,198 @@
+JPA:
+JPA provides API's
+JPA (Java Persistence API) is a specification (not a framework) that defines how Java objects (entities) interact with relational databases.
+JPA is a Java specification for managing relational data in Java applications using ORM (Object-Relational Mapping). It is part of Java EE (now Jakarta EE) and widely used with Spring Boot.  
+
+JDBC----> Interface
+Driver----> Implementation
+
+JPA(Inteface)
+Hibernate(Implementation of JPA)
+
+ORM:
+Bridge b/w java obj and databases
+
+
+Steps to work with Eclipse
+1. add the JPA dependency
+2. Create the properties file and add the info
+3. Create the Entity class, mention the fields with get and setters and Default constructor is mandatory(empty constructor)
+
+4. Create repo with @Repository anno, extends JpaRepository<EntityClass, idType>
+5. Create Supported classes(Controller and service class)
+
+
+Simple rule (very important)
+Operation	Parameter needed?
+Get all records	❌ No parameter
+Get one record	✔ PathVariable
+Create record	✔ RequestBody
+Update record	✔ PathVariable + RequestBody
+Delete record	✔ PathVariable
+
+
+JPA Achitecture:
+
+Each entitymanager obj creates Persistance context
+Persistance context stores Entity.
+
+
+1. Persitance Unit: Persistance Unit: Configuration like App.property
+Logical grouping of Entity classes which share same configurations,
+Configuration detail like:
+   * databases connection properties
+   * JPA provider(Hibernate)
+In SpringBoot we can create app.property file, if we are using only one db.
+
+
+
+2. Entitymanagerfactory: one Persistance unit has one EntitymanagerFactor
+using persistence unit config, entitymanagerfactory obj get created during app startup.
+If any property is not provided, default one is picked and set
+1 entitymanagerfactory for 1 persistence unit.
+This class act as a factory to create an obj of Entitymanager.
+
+3. Transaction manager aassociatioon with Entitymanagerfactory
+Transaction manager for one one DB.
+JTA we can use for multiple DB.
+
+
+4. Entitymanager: It's session, we can have many Entitymanager.
+EntityManager:
+it's an interface in JPA that provides methods to perform CRUD operations on Entities.
+    Persist()---For saving
+    Merge() For updating
+     find()---For fetching
+     remove()----For deleting
+     createQuery()---for executing JPQL queries)
+Hibrenates provide the implementation
+
+Cache:
+2nd level cache.
+Before DB cache will be there
+How to enable:
+
+1. Add the ejcache, jcache and cache-api dependency.
+2. enable the 2nd level cache in app.property
+# Enable second level cache
+spring.jpa.properties.hibernate.cache.use_second_level_cache=true
+
+# Enable query cache (optional)
+spring.jpa.properties.hibernate.cache.use_query_cache=true
+
+# Specify cache region factory
+spring.jpa.properties.hibernate.cache.region.factory_class=org.hibernate.cache.jcache.JCacheRegionFactory
+
+# JCache (JSR-107) provider
+spring.jpa.properties.javax.cache.provider=org.ehcache.jsr107.EhcacheCachingProvider
+
+# Optional: configuration file location (Ehcache config)
+spring.jpa.properties.javax.cache.uri=classpath:ehcache.xml
+
+3. In entity class add @cache
+@cache(usage=CacheConcurrencyStrategy.READ_WRITE, region="cachename"
+
+
+
+
+
+Cache concurrency strategy:
+Which one to use:----(Depends on project to project)This guides How CRUD operation impact our cache data.
+
+1. READ_ONLY:
+Good for static data
+which do not requires any update
+
+2. READ_WRITE
+During read, it put a shared lock, no write 
+During update, it put exclusive lock, other read and write are not allowed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
