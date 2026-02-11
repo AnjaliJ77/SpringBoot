@@ -1,0 +1,114 @@
+J
+We use DTO because:
+
+Separates database and presentation layers
+Prevents exposing sensitive entity data
+Allows flexible API responses
+Reduces coupling between database schema and client
+Supports validation and projections
+Using entities directly for API responses is bad practice in large applications.
+
+
+Spring.jpa.hibernate.ddl.auto in app.property    or
+ddl-auto: update in apllication.yml     configure tells hibernate regarding how to create and manage the DB schema.
+1. none--->It wont create schema, update, and delete schema---> Do nothing and good for production
+2. update---> it create schema and update schema. no delete--> Good for development env
+3. Validate--->It wont create schema, update, and delete schema-->During app startup, does matching b/n entities and DB schema
+4. create--->it create schema, update and delete schema--> Drops and re-create the schema during app startup
+5. create-drop-->it create schema, update and delete schema-->creates the schema during startup and drops the schema when the app shutdown.
+
+
+
+Difference b/n DB and schema
+DB: can have multiple schema
+Schema: can have multiple tables
+
+
+-----Mapping classes to Tables:
+@Table Annotation
+it's optional field 
+We have to create schema manually or we can write a line inside app.property to create schema.
+Schema is optional.
+@Table(name="name, schema="schamaname")
+@Table(name="name, schema="schamaname",@Unique Constraint={
+(columnNames="fieldname"),//single coulmn
+@Table(name="name, schema="schamaname",@Unique Constraint={(columnNames={"name, email"})})//compoite unique constraint
+
+For ex:
+@Table(name = "userentity",uniqueConstraints = {
+				@UniqueConstraint(columnNames="uname")})
+
+@Coulmn:
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long uid;
+	@Column(name = "uname", nullable = false, unique = true, length = 50)
+	private String uname;
+
+@Id: used to mark the id as a primary key
+Each entity can have only one @id
+
+
+
+----Composite PK: Combination of two or more coulmns to form a pK
+Using @Embeddable and @EmbeddedId annotation
+
+Using @IdClass and @Id annotation
+
+Rules to follow for both the approach:
+Must be a public class
+Must implement the seriakizable interface
+Must have no-arg constructor
+Must ovveride the equals() and hashCode() methods.
+
+Using @IdClass and @Id annotation
+Step 1: Create the Id class
+
+import java.io.Serializable;
+
+public class OrderId implements Serializable {
+    private Long orderId;
+    private Long productId;
+
+    // default constructor, getters, setters, equals, hashCode
+}
+
+Step 2: Annotate the Entity
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
+import jakarta.persistence.Table;
+
+@Entity
+@IdClass(OrderId.class)
+@Table(name = "orders")
+public class Order {
+
+    @Id
+    private Long orderId;
+
+    @Id
+    private Long productId;
+
+    private int quantity;
+
+    // getters and setters
+}
+
+
+
+
+
+
+@generatedValue annotation:
+It works only for single PK not with composite one
+Types:
+1. Identity-->Auto increment value
+2. SEQUENCE---> Recommenede one
+Used to generate Unique number
+Speed up the effiency when we caches sequence value
+3. Table:
+rarely used
+Less effient
+Each time separate table get created
