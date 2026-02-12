@@ -1,6 +1,6 @@
 J
 We use DTO because:
-
+DTO(data  transfer object)
 Separates database and presentation layers
 Prevents exposing sensitive entity data
 Allows flexible API responses
@@ -98,6 +98,25 @@ public class Order {
 
 
 
+Or
+
+
+Create a entity class ex: User address
+@entity
+clss address{
+@embeddedId
+private userAdressCK id;
+
+
+getter and setter and field
+
+}}
+
+Another class
+
+@Embeddable
+class userAdressCK{
+Fields getter and setters}}
 
 
 
