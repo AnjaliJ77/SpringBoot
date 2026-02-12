@@ -1,0 +1,35 @@
+Mapping:
+
+@one to one Unidirectional:
+(Like a one user can have a one address)
+ One entity(A) referance only one instance of another entity(B)
+But referance exist only in one direction i.e from Parent(A) to Child(B).
+
+By default hibernate choose:
+the foreign key anme as: Field name id
+But if we need more control over it, we can use @JoinColumn annotation.
+
+
+
+Cascade type:
+Without Cascade type, any operation on Parent do not affect Child entity.
+Managing child entities explicitly can be error prone.
+1. ALL:
+
+
+2.PERSIST
+Inserting Parent entity automatically persist its associated child entity data.
+
+3. MERGE
+updating the parent entity automatically update the child
+
+4. REMOVE
+
+5. REFRESH: 
+and
+6. DETACH: 
+less frequently used.
+
+
+
+
