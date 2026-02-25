@@ -90,3 +90,90 @@ It sends SQL queries to DB immediately, but transaction is NOT committed yet.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+Native Query:
+plain SQL query
+directly interact with DB
+No caching, lazy loading pr entity life cycle managemnet
+
+When to use use over JPQL:
+more comple queries
+
+Native query = Direct SQL query (not JPQL)
+
+Entity
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+}
+
+Repository
+@Repository
+public interface UserRepo extends JpaRepository<User, Long> {
+
+    @Query(value = "SELECT * FROM user WHERE name = :name", nativeQuery = true)
+    List<User> findByNameNative(@Param("name") String name);
+}
+
+✔ nativeQuery = true → tells Spring this is SQL
+✔ Uses table name & column name (DB level)
+
+
+Service Call
+userRepo.findByNameNative("Anjali");
+
+
+
+
+
+Criteria API:
+to build dynamic type safe ra sql.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
