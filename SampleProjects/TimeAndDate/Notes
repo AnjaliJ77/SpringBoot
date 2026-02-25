@@ -1,1 +1,6 @@
 
+date-Time in Spring Boot
+using @JSONformate
+
+1. Localdate---> YYYY-MM-DD
+2. LocalTime--->dd-mm-yyyy
