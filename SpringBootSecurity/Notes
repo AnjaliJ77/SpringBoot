@@ -1,0 +1,24 @@
+SpringBoot Security:
+When you build a Spring Boot application, hackers try to break it in common ways.
+
+Common attacks:
+1. CSRF(Cross site request forgery)
+user is already authenticated to a site
+CSRF attacks tricks a browser into making unwanted request to a site wuere user is already authenticated.
+Applicable where state and session is managed.
+
+
+Steps:
+1. making user authenticated manner
+2. Send som malicious link to the user, who is authenticated
+
+
+How to get protexted fro CSEF attack:
+1. By using CSRF Token
+2. XSS(Cross site scripting)
+It allows attacker to put mallious srip into web page viewed by other users
+Like comments page.
+3. CORS(cross origin resource sharing)
+It's not a attack but more of a security eature
+4. SQL injection:
+attacker manipulate SQL query
