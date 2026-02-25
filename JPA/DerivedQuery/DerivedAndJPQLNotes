@@ -1,0 +1,92 @@
+Derived query:
+A Derived Query in Spring Data JPA is a query method where Spring automatically generates SQL based on the method name.
+
+automatically generate query from the method
+need to follow  aspecific convention
+used for get/remove not for insert/update
+
+Method name should starts with
+find/read/get/query/search/stream/count/exist/delete/remove  BY at the end of the String.
+✔ Method must start with:
+findBy
+readBy
+getBy
+countBy
+existsBy
+deleteBy
+✔ Property names must match entity fields exactly.
+
+@Repository
+public interface UserRepo extends JpaRepository<UserEntity, Long> {
+	
+	List<UserEntity> findByUname(String uname);
+
+}
+
+
+
+
+
+
+
+Queries which are little complex and can't be hendled via derived query, we can use JPQL:
+
+
+
+--------------JPQL--------------------
+Java persistance query lang
+Similar to SQL but works on Entity Object instead of direct database.
+It's database independent(we can change the db whenever we need)
+works with entity name and fields and not with table column names.
+
+A query language used to query Entity objects, not tables.
+⚠️ Important:
+SQL → works on tables & columns
+JPQL → works on Entity class & field names
+
+Like
+@Query("SELECT s FROM Student s WHERE s.name LIKE %:name%")
+List<Student> findByNameLike(@Param("name") String name);
+
+Greater Than
+@Query("SELECT s FROM Student s WHERE s.sid > :id")
+List<Student> findByIdGreater(@Param("id") int id);
+
+Multiple Conditions
+@Query("SELECT s FROM Student s WHERE s.name = :name AND s.sname = :city")
+List<Student> findByNameAndCity(@Param("name") String name,
+                                @Param("city") String city);
+
+
+
+
+
+
+
+-------N+1 problem(for many to many or one to many)
+problem: 
+1 user an have many address
+and our query is such that, it can fetch more than 1 user. Then this problem can occurs
+
+so we have N users. 
+1 query can run n number of parent and child
+so total num of query hit: N+1.
+
+Solution: using Join fetch(JPQL)
+
+solution 2: @batchSize(size=10)  (no need to write query)
+
+
+
+
+Flush---> save
+clear--->clear
+
+flush() means:
+Synchronize persistence context with the database.
+It sends SQL queries to DB immediately, but transaction is NOT committed yet.
+
+
+
+
+
