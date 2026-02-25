@@ -1,0 +1,27 @@
+UUID and H2 Database:
+
+UUID = Random unique ID
+550e8400-e29b-41d4-a716-446655440000
+It is just a very long random ID.
+
+Nobody can guess next ID.
+So it is:
+✔ More secure
+✔ Hard to guess
+✔ Good for public APIs
+
+UUID = Random unique ID that improves security and avoids ID conflicts.
+H2 Database is a lightweight Java database.
+
+It is mostly used for:
+✔ Testing
+✔ Development
+✔ Learning Spring Boot
+
+Why We Use H2?
+Because:
+No need to install MySQL
+Runs inside your Spring Boot app
+Starts automatically
+Very fast
+
