@@ -122,6 +122,35 @@ Singleton means only ONE object (instance) of a bean is created in the Spring co
 
 
 
+----Config
+If we want to create our custom security chain we can for Config.
+What Is Security Configuration Class?
+
+A Security Configuration class is where you give instructions to the security guard.
+You tell Spring Security:
+Who can access what
+Whether login is required
+Whether to use Basic Auth or form login
+Whether to enable/disable CSRF
+
+UserDetailsService is:
+A service that loads user data from database (or memory) for authentication.
+
+
+Layers in SB
+1. Presentation layer: it present the data ad the app features to the user.this is where all the controller classes exist.
+
+2. Business logig: tasks such as evlauation, decision making procesing data is done at this layer
+
+3. Data Acccess layer: all repo classess reside.(data access).
+
+
+
+
+
+
+
+
 
 
 
